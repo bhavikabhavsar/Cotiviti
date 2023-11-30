@@ -1,0 +1,51 @@
+
+---
+title: "COTIVITI"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+---
+
+<P><BR>
+<CENTER>
+<FONT SIZE = 5, COLOR="OLIVE">
+<B> Hackathon Proof Of Concept </B>
+
+```{r libraries data, message=FALSE, warning=FALSE}
+# Install and load necessary packages
+if (!require("tm")) install.packages("tm")
+if (!require("syuzhet")) install.packages("syuzhet")
+library(tm)
+library(syuzhet)
+
+# Sample clinical text
+clinical_text <- "Patient shows symptoms of flu. Complaints include fever, cough, and difficulty in breathing. Patient has a history of asthma. Recommend COVID-19 testing and a follow-up after two weeks."
+
+# Text processing
+processed_text <- tolower(clinical_text)  # Convert to lower case
+processed_text <- removePunctuation(processed_text)  # Remove punctuation
+processed_text <- removeNumbers(processed_text)  # Remove numbers
+
+# Sentiment Analysis
+sentiment_scores <- get_sentiment(processed_text, method="syuzhet")
+print(paste("Sentiment Score:", sentiment_scores))
+```
+
+<P><BR>
+<FONT SIZE = 4, COLOR="OLIVE" ></B>
+How the POC Works
+</B></FONT>
+<BR>
+<FONT SIZE = 2, COLOR="BLACK"></B>
+Text Processing: The script converts the clinical text to lowercase, removes punctuation and numbers to clean the text for analysis.
+Sentiment Analysis: It then uses the syuzhet package to perform sentiment analysis. The package computes a sentiment score, indicating the overall emotion conveyed in the text.
+</B>
+<P><BR>
+<FONT SIZE = 4, COLOR="OLIVE" ></B>
+Conclusion
+</B></FONT>
+<BR>
+<FONT SIZE = 2, COLOR="BLACK"></B>
+The sentiment score helps in understanding the emotional tone of the clinical text. In a practical healthcare setting, this can be used to gauge patient sentiments from clinical notes or feedback, potentially aiding in understanding patient wellbeing and treatment response. This POC is a basic demonstration and can be extended with more complex NLP tasks for deeper insights.
+</B>
